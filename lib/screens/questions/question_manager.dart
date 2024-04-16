@@ -1,5 +1,5 @@
-import 'package:ct484_project/models/auth_token.dart';
 import 'package:flutter/foundation.dart';
+import '../../models/auth_token.dart';
 import '../../models/question_model.dart';
 import '../../services/question_service.dart';
 
@@ -10,7 +10,6 @@ class QuestionManager with ChangeNotifier {
 
   List<Question> _questions = [];
   List<Question> get questions => [..._questions];
-
 
   set authToken(AuthToken? authToken){
     _questionService.authToken = authToken;

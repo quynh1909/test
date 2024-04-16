@@ -1,11 +1,8 @@
 import 'package:flutter/material.dart';
-import '../../constants.dart';
+import 'package:provider/provider.dart';
 import '../../widgets/next_btn.dart';
 import '../../widgets/question_widget.dart';
 import '../../widgets/result_card.dart';
-
-import 'package:provider/provider.dart';
-
 import 'question_manager.dart';
 
 class QuizScreen extends StatefulWidget {
@@ -24,29 +21,34 @@ class _QuizScreenState extends State<QuizScreen> {
     return Scaffold(
       appBar: AppBar(
         title: const Text('Quiz App'),
-        backgroundColor: unanswered,
+        backgroundColor: Colors.blue, // Thay đổi màu sắc nếu cần
       ),
       body: Container(
-        decoration: backgroundDecoration,
         padding: const EdgeInsets.symmetric(horizontal: 10.0),
-        width: double.infinity,
         child: Column(
           children: [
-            QuestionWidget(
-              question: questions.isNotEmpty ? questions[0].title : '',
-              indexAction: 0,
-              totalQuestions: questions.length,
-            ),
-            const Divider(color: unanswered),
-            const SizedBox(height: 25.0),
             if (questions.isNotEmpty)
-              for (int i = 0; i < questions[0].options.length; i++)
-                GestureDetector(
-                  onTap: () {},
-                  child: ResultCard(
-                    result: questions[0].options[i],
-                    color: unanswered,
-                  ),
+              for (int i = 0; i < questions.length; i++)
+                Column(
+                  children: [
+                    QuestionWidget(
+                      question: questions[i].title,
+                      indexAction: i,
+                      totalQuestions: questions.length,
+                    ),
+                    const Divider(color: Colors.grey),
+                    const SizedBox(height: 25.0),
+                    for (int j = 0; j < questions[i].options.length; j++)
+                      GestureDetector(
+                        onTap: () {
+                          // Xử lý khi người dùng chọn một tùy chọn
+                        },
+                        child: ResultCard(
+                          result: questions[i].options[j],
+                          color: Colors.blue, // Thay đổi màu sắc nếu cần
+                        ),
+                      ),
+                  ],
                 ),
           ],
         ),
@@ -58,5 +60,4 @@ class _QuizScreenState extends State<QuizScreen> {
       floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
     );
   }
-
 }

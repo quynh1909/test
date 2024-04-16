@@ -52,7 +52,7 @@ class _AddQuestionScreenState extends State<AddQuestionScreen> {
 
         questionService.addQuestion(question).then((_) {
           ScaffoldMessenger.of(context).showSnackBar(
-            SnackBar(
+            const SnackBar(
               content: Text('Câu hỏi đã được thêm vào cơ sở dữ liệu'),
               behavior: SnackBarBehavior.floating,
               margin: EdgeInsets.symmetric(vertical: 20.0),
@@ -75,14 +75,14 @@ class _AddQuestionScreenState extends State<AddQuestionScreen> {
             SnackBar(
               content: Text('Đã xảy ra lỗi: $error'),
               behavior: SnackBarBehavior.floating,
-              margin: EdgeInsets.symmetric(vertical: 20.0),
+              margin: const EdgeInsets.symmetric(vertical: 20.0),
             ),
           );
         });
       } else {
         // Show error message if no correct answer is selected
         ScaffoldMessenger.of(context).showSnackBar(
-          SnackBar(
+          const SnackBar(
             content: Text('Vui lòng chọn ít nhất một đáp án đúng'),
             behavior: SnackBarBehavior.floating,
             margin: EdgeInsets.symmetric(vertical: 20.0),
@@ -92,7 +92,7 @@ class _AddQuestionScreenState extends State<AddQuestionScreen> {
     } else {
       // Show error message if any field is empty
       ScaffoldMessenger.of(context).showSnackBar(
-        SnackBar(
+        const SnackBar(
           content: Text('Vui lòng điền đầy đủ thông tin cho câu hỏi'),
           behavior: SnackBarBehavior.floating,
           margin: EdgeInsets.symmetric(vertical: 20.0),
@@ -116,14 +116,14 @@ class _AddQuestionScreenState extends State<AddQuestionScreen> {
             children: [
               TextField(
                 controller: titleController,
-                decoration: InputDecoration(
+                decoration: const InputDecoration(
                   labelText: 'Nội dung câu hỏi',
                 ),
               ),
               SizedBox(height: 16.0),
               TextField(
                 controller: optionController1,
-                decoration: InputDecoration(
+                decoration: const InputDecoration(
                   labelText: 'Option 1',
                 ),
               ),
@@ -138,7 +138,7 @@ class _AddQuestionScreenState extends State<AddQuestionScreen> {
               ),
               TextField(
                 controller: optionController2,
-                decoration: InputDecoration(
+                decoration: const InputDecoration(
                   labelText: 'Option 2',
                 ),
               ),
@@ -153,7 +153,7 @@ class _AddQuestionScreenState extends State<AddQuestionScreen> {
               ),
               TextField(
                 controller: optionController3,
-                decoration: InputDecoration(
+                decoration: const InputDecoration(
                   labelText: 'Option 3',
                 ),
               ),
@@ -168,7 +168,7 @@ class _AddQuestionScreenState extends State<AddQuestionScreen> {
               ),
               TextField(
                 controller: optionController4,
-                decoration: InputDecoration(
+                decoration: const InputDecoration(
                   labelText: 'Option 4',
                 ),
               ),

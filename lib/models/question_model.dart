@@ -1,7 +1,9 @@
+import 'dart:convert';
+
 class Question {
-  final String id; // id của câu hỏi trong cơ sở dữ liệu
-  final String title; // Tiêu đề của câu hỏi
-  final List<String> options; // Các phương án đáp án
+  final String id;
+  final String title;
+  final List<String> options;
 
   Question({
     required this.id,
@@ -9,9 +11,16 @@ class Question {
     required this.options,
   });
 
-  @override
-  String toString() {
-    return 'Question{id: $id, title: $title, options: $options}';
+  factory Question.fromFirebase({
+    required String id,
+    required String title,
+    required List<dynamic> options,
+  }) {
+    return Question(
+      id: id,
+      title: title,
+      options: options.cast<String>(),
+    );
   }
 
   Question copyWith({
@@ -26,7 +35,7 @@ class Question {
     );
   }
 
-  Map<String, dynamic> toJson() {
+  Map<String, dynamic> toMap() {
     return {
       'id': id,
       'title': title,
@@ -34,13 +43,15 @@ class Question {
     };
   }
 
-  static Question fromJson(Map<String, dynamic> json) {
-    List<dynamic> optionsJson = json['options'];
-    List<String> options = optionsJson.map((option) => option.toString()).toList();
+  String toJson() => json.encode(toMap());
+
+  factory Question.fromJson(String source) => Question.fromMap(json.decode(source));
+
+  factory Question.fromMap(Map<String, dynamic> map) {
     return Question(
-      id: json['id'],
-      title: json['title'],
-      options: options,
+      id: map['id'],
+      title: map['title'],
+      options: List<String>.from(map['options']),
     );
   }
 }
